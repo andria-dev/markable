@@ -1,0 +1,4 @@
+{
+  "name": "markable-demo",
+  "main": "public/scripts/bundle.mjs"
+}

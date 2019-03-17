@@ -1,0 +1,4 @@
+demo/dist/
+demo/public/scripts/
+node_modules/
+.rts2_cache_*/

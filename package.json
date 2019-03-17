@@ -1,0 +1,23 @@
+{
+  "name": "markable",
+  "version": "0.0.0",
+  "description": "A small but highly customizable content-editable editor built with React.",
+  "main": "dist/index.js",
+  "repository": "git@github.com:ChrisBrownie55/markable.git",
+  "author": "<chbphone55@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "start": "microenvi --cwd demo --jsx=react --define process.env.NODE_ENV=development",
+    "build": "microbundle --jsx='react'"
+  },
+  "devDependencies": {
+    "microbundle": "^0.11.0",
+    "microenvi": "^0.3.1",
+    "react-dom": "^16.8.4"
+  },
+  "dependencies": {
+    "immutable": "^4.0.0-rc.12",
+    "react": "^16.8.4"
+  }
+}
