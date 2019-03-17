@@ -44,4 +44,12 @@ export class Line extends LineRecord {
 
     return this.set('characters', updatedCharacters);
   }
+
+  getBlockStyle() {
+    return this.get('blockStyle');
+  }
+
+  setBlockStyle(style: string) {
+    return this.set('blockStyle', style);
+  }
 }
