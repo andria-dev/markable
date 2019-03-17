@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+const { useState } = React;
 import ReactDOM from 'react-dom';
 import { Editor, EditorState } from '../src/index';
 
