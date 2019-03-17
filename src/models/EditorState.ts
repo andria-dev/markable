@@ -16,10 +16,12 @@ export class EditorState {
     this.immutable = immutable;
   }
 
+  /** Creates a new empty EditorState */
   static create(): EditorState {
     return this.fromContent(List<Line>());
   }
 
+  /** Creates a new EditorState with the passed lines */
   static fromContent(lines: List<Line>): EditorState {
     return new EditorState(EditorStateRecord({ lines }));
   }
