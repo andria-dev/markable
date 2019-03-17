@@ -18,19 +18,30 @@ interface LineRange {
   start: LinePosition;
   end: LinePosition;
 }
-const defaultLineRecord = {
-  characters: List<Character>()
+
+const defaultLineRecord: {
+  characters: List<Character>;
+  blockStyle?: string;
+} = {
+  characters: List<Character>(),
+  blockStyle: null
 };
 const LineRecord = Record(defaultLineRecord);
 export class Line extends LineRecord {
-  getCharacters = () => this.get('characters');
-  addCharacters = (index: number, value: Character): Line =>
-    this.set('characters', this.getCharacters().insert(index, value));
-  removeCharacters = (range: Range): Line =>
-    this.set(
-      'characters',
-      this.getCharacters()
-        .slice(0, range.start.index)
-        .concat(this.getCharacters().slice(range.start.index, range.end.index))
-    );
+  getCharacters(): List<Character> {
+    return this.get('characters');
+  }
+
+  addCharacters(index: number, value: Character): Line {
+    return this.set('characters', this.getCharacters().insert(index, value));
+  }
+
+  removeCharacters(range: Range): Line {
+    const characters = this.getCharacters();
+    const updatedCharacters = characters
+      .slice(0, range.start.index)
+      .concat(characters.slice(range.start.index, range.end.index));
+
+    return this.set('characters', updatedCharacters);
+  }
 }
