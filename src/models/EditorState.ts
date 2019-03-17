@@ -5,10 +5,30 @@ const defaultEditorStateRecord = {
   lines: List<Line>()
 };
 const EditorStateRecord = Record(defaultEditorStateRecord);
-export class EditorState extends EditorStateRecord {
-  getLines = () => this.get('lines');
+type EditorStateRecordType = Record<{
+  lines: List<Line>;
+}>;
+
+export class EditorState {
+  private immutable: EditorStateRecordType;
+
+  constructor(immutable: EditorStateRecordType) {
+    this.immutable = immutable;
+  }
+
+  static create(): EditorState {
+    return this.fromContent(List<Line>());
+  }
+
+  static fromContent(lines: List<Line>): EditorState {
+    return new EditorState(EditorStateRecord({ lines }));
+  }
+
+  getLines = () => this.immutable.get('lines');
+
   addLine = (index: number, line: Line): EditorState =>
-    this.set('lines', this.getLines().insert(index, line));
+    new EditorState(this.immutable.set('lines', this.getLines().insert(index, line)));
+
   addLines = (index: number, lines: Line[]): EditorState => {
     let currentState = this as EditorState;
     for (let i = 0; i < lines.length; ++i) {
