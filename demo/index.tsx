@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import { Editor, EditorState } from '../src/index';
 
 function App() {
-  const [state, setState] = useState();
+  const [state, setState] = useState(EditorState.create());
 
   function handleBeforeChange(nextState: EditorState) {
     return nextState;

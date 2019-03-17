@@ -42,7 +42,7 @@ export function Editor({ state, onChange, onBeforeChange }: EditorProps) {
     .flatten();
 
   return (
-    <div contentEditable onKeyPress={handleChange}>
+    <div contentEditable suppressContentEditableWarning onKeyPress={handleChange}>
       {children}
     </div>
   );
