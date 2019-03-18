@@ -6,9 +6,10 @@ interface EditorProps {
   state: EditorState;
   onChange: (editorState: EditorState) => void | any;
   onBeforeChange?: (editorState: EditorState, range: Range | null) => EditorState;
+  placeholder?: string;
   [s: string]: any;
 }
-export function Editor({ state, onChange, onBeforeChange }: EditorProps) {
+export function Editor({ state, onChange, onBeforeChange, placeholder }: EditorProps) {
   const handleChange = useCallback(
     event => {
       event.preventDefault();
@@ -39,11 +40,12 @@ export function Editor({ state, onChange, onBeforeChange }: EditorProps) {
         return node;
       });
     })
-    .flatten();
+    .flatten()
+    .toJS();
 
   return (
     <div contentEditable suppressContentEditableWarning onKeyPress={handleChange}>
-      {children}
+      {children.length ? children : placeholder || null}
     </div>
   );
 }
