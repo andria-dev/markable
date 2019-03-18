@@ -1,0 +1,6 @@
+.Markable {
+}
+.Markable:empty::after {
+  content: attr(placeholder);
+  opacity: 0.5;
+}

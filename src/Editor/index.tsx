@@ -1,15 +1,24 @@
 import React from 'react';
-import { EditorState } from '.';
+import { EditorState } from '..';
 const { useCallback } = React;
+
+import './style.css';
 
 interface EditorProps {
   state: EditorState;
   onChange: (editorState: EditorState) => void | any;
   onBeforeChange?: (editorState: EditorState, range: Range | null) => EditorState;
   placeholder?: string;
+  className?: string;
   [s: string]: any;
 }
-export function Editor({ state, onChange, onBeforeChange, placeholder }: EditorProps) {
+export function Editor({
+  state,
+  onChange,
+  onBeforeChange,
+  placeholder,
+  className = ''
+}: EditorProps) {
   const handleChange = useCallback(
     event => {
       event.preventDefault();
@@ -44,8 +53,13 @@ export function Editor({ state, onChange, onBeforeChange, placeholder }: EditorP
     .toJS();
 
   return (
-    <div contentEditable suppressContentEditableWarning onKeyPress={handleChange}>
-      {children.length ? children : placeholder || null}
+    <div
+      className={'Markable ' + className}
+      placeholder={placeholder}
+      contentEditable
+      suppressContentEditableWarning
+    >
+      {children}
     </div>
   );
 }
