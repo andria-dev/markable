@@ -42,6 +42,10 @@ export class EditorState {
     return this.immutable.get('lines');
   }
 
+  getLine(index: number) {
+    return this.getLines().get(index);
+  }
+
   addLine(index: number, line: Line): EditorState {
     return new EditorState(this.immutable.set('lines', this.getLines().insert(index, line)));
   }
